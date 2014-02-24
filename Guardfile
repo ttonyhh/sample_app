@@ -3,6 +3,8 @@
 
 require 'active_support/inflector'
 
+# test_unit: false (tried this but it failed to start spork)
+
 guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' },
                :rspec_env    => { 'RAILS_ENV' => 'test' } do
   watch('config/application.rb')

@@ -42,5 +42,10 @@ describe "UserPages" do
 				expect { click_button submit }.to change(User, :count).by(1)
 			end
 		end
+
+		#describe "created user lands on new user page" do
+			#it "created user" do
+				#expect { click_button submit }.to redirect_to(@user)
+			#end
 	end
 end

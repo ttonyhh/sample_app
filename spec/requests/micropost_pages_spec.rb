@@ -41,5 +41,29 @@ describe "Micropost pages" do
 				expect{ click_link "delete" }.to change(Micropost, :count).by(-1)
 			end
 		end
+
+		#describe "as incorrect user" do
+			#subject { user }
+			#let(:user) {FactoryGirl.create(:user, name: "user1") }
+			#before { sign_in user1 }
+
+			#it "should not have a delete link" do
+				#expect(page).not_to have_link('delete')
+			#end
+		#end
 	end
+
+	describe "micropost pagination" do
+		before(:all) { 65.times { FactoryGirl.create(:micropost, user: user) } }
+		after(:all) {Micropost.delete_all }
+
+		it { should have_selector('div.pagination') }
+
+		it "should list each micropost" do
+			Micropost.paginate(page: 1).each do |micropost|
+				expect(page).to have_selector('li', text: micropost.content)
+			end
+		end
+	end
+
 end
